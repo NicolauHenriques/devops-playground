@@ -1,0 +1,6 @@
+== Memory Health @ 2025-12-05T01:38:45+00:00 ==
+mem_free_mb=14740 WARN_MEM=25000 CRIT_MEM=20000
+CRITICAL: free memory 14740MB (< 20000MB)
+
+Summary:
+OVERALL: CRITICAL
