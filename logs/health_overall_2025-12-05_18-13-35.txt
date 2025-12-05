@@ -1,0 +1,21 @@
+== Overall Health @ 2025-12-05T18:13:35+00:00 ==
+
+## Disk
+== Disk Health @ 2025-12-05T18:13:35+00:00 ==
+disk_use_pct=1 WARN=85 CRIT=95
+OK: / usage is below 85%
+Saved to: ./logs/health_disk_2025-12-05_18-13-35.txt
+disk_status=0
+
+## Memory
+== Memory Health @ 2025-12-05T18:13:35+00:00 ==
+mem_free_mb=14761 WARN_MEM=800 CRIT_MEM=300
+OK: free memory 14761MB
+
+Summary:
+OVERALL: OK
+Saved to: ./logs/health_mem_2025-12-05_18-13-35.txt
+mem_status=0
+
+Summary:
+OVERALL: OK

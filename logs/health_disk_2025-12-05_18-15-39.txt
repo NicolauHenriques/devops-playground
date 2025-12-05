@@ -1,0 +1,3 @@
+== Disk Health @ 2025-12-05T18:15:39+00:00 ==
+disk_use_pct=1 WARN=85 CRIT=95
+OK: / usage is below 85%
