@@ -1,0 +1,16 @@
+== Service Check @ 2025-12-08T05:29:00+00:00 ==
+Services: systemd-resolved.service wsl-pro.service
+
+## systemd-resolved.service
+  active:  active
+  enabled: enabled
+  status:  0
+
+## wsl-pro.service
+  active:  activating
+unknown
+  enabled: enabled
+  status:  2
+
+Summary:
+OVERALL: CRITICAL (one or more services inactive/failed/unknown)

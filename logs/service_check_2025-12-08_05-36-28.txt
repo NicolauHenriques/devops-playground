@@ -1,0 +1,10 @@
+== Service Check @ 2025-12-08T05:36:28+00:00 ==
+Services: does-not-exist.service
+
+## does-not-exist.service
+  active:  inactive
+  enabled: not-found
+  status:  2
+
+Summary:
+OVERALL: CRITICAL (one or more services inactive/failed/unknown)
