@@ -1,0 +1,20 @@
+== Network Check @ 2025-12-08T07:06:56+00:00 ==
+Targets: https://google.com https://this-domain-should-not-exist-12345.com
+
+## https://google.com
+  Host part: google.com
+ DNS:       OK (2a00:1450:4009:c0b::64 google.com
+2a00:1450:4009:c0b::65 google.com
+2a00:1450:4009:c0b::66 google.com
+2a00:1450:4009:c0b::8a google.com)
+  HTTP:       OK (status 301)
+  status: 0
+
+## https://this-domain-should-not-exist-12345.com
+  Host part: this-domain-should-not-exist-12345.com
+ DNS:       FAILED (no A/AAAA record)
+    HTTP:       SKIPPED (DNS failed)
+  status: 2
+
+Summary:
+OVERALL: CRITICAL (one or more targets unreachable / DNS/TCP failures)

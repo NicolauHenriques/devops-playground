@@ -1,0 +1,14 @@
+== Network Check @ 2025-12-08T07:10:11+00:00 ==
+Targets: google.com
+
+## google.com
+  Host part: google.com
+ DNS:       OK (2a00:1450:4009:c0b::65 google.com
+2a00:1450:4009:c0b::66 google.com
+2a00:1450:4009:c0b::8a google.com
+2a00:1450:4009:c0b::64 google.com)
+  HTTP:       SKIPPED (not an HTTP/HTTPS URL)
+  status: 0
+
+Summary:
+OVERALL: OK (all targets reachable / healthy enough)
