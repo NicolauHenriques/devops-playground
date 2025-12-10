@@ -1,6 +1,0 @@
-== Memory Health @ 2025-12-05T18:16:22+00:00 ==
-mem_free_mb=14755 WARN_MEM=800 CRIT_MEM=300
-OK: free memory 14755MB
-
-Summary:
-OVERALL: OK

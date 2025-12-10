@@ -1,0 +1,7 @@
+# Ignore log files and generated snapshots
+logs/
+
+# Editor/OS noise (just in case)
+*.swp
+*.swo
+.DS_Store

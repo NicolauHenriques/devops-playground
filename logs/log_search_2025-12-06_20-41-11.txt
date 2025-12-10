@@ -1,6 +1,0 @@
-== Log Search @ 2025-12-06T20:41:11+00:00 ==
-pattern=CRITICAL
-file=logs/health_disk_2025-12-03_22-17-10.txt
-
-## Last 20 matches (if any)
-No matches found.
