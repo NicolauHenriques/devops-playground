@@ -1,6 +1,0 @@
- == Memory Health @  ==
-mem_free_mb=14750 WARN_MEM=800 CRIT_MEM=300
-OK: free memory 14750MB
-
-Summary:
-OVERALL: OK
