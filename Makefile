@@ -20,7 +20,7 @@ net:
 	./net_check.sh google.com https://google.com
 
 cleanup:
-	./cleanup_logs.sh 7
+	./cleanup_logs.sh
 
 ps:
 	./ps_snapshot.sh
@@ -29,4 +29,4 @@ snapshot:
 	./snapshot.sh
 
 backup:
-	./backup_logs.sh 14
+	./backup_logs.sh

@@ -4,9 +4,19 @@ set -euo pipefail
 OUTDIR="./logs"
 mkdir -p "$OUTDIR"
 
-# Allow env overrides: WARN_MEM=1000 CRIT_MEM=500 ./health_mem.sh
-WARN_MEM="${WARN_MEM:-800}" # warn if free < 800 MB
-CRIT_MEM="${CRIT_MEM:-300}" # critical if free < 300 MB
+# Optional global config
+CONFIG="./config.sh"
+if [ -r "$CONFIG" ]; then
+  # shellcheck source=/dev/null
+  . "$CONFIG"
+fi
+
+# Threshold precedence:
+#   1) WARN_MEM / CRIT_MEM env vars (strongest)
+#   2) HEALTH_WARN_MEM / HEALTH_CRIT_MEM from config.sh
+#   3) Hard-coded defaults 800 / 300
+WARN_MEM="${WARN_MEM:-${HEALTH_WARN_MEM:-800}}"
+CRIT_MEM="${CRIT_MEM:-${HEALTH_CRIT_MEM:-300}}"
 
 TS="$(date +%F_%H-%M-%S)"
 OUT="$OUTDIR/health_mem_${TS}.txt"

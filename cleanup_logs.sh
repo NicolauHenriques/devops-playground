@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-OUTDIR="./logs"
-DEFAULT_DAYS=7
+# Optional global config
+CONFIG="./config.sh"
+if [ -r "$CONFIG" ]; then
+  # shellcheck source=/dev/null
+  . "$CONFIG"
+fi
 
+OUTDIR="./logs"
+
+# Default days can now come from config (CLEANUP_LOGS_DAYS),
+# but can still be overridden by the first CLI argument.
+DEFAULT_DAYS="${CLEANUP_LOGS_DAYS:-7}"
 DAYS="${1:-$DEFAULT_DAYS}"
 
 if ! [[ "$DAYS" =~ ^[0-9]+$ ]]; then

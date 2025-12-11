@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Optional global config
+CONFIG="./config.sh"
+if [ -r "$CONFIG" ]; then
+  # shellcheck source=/dev/null
+  . "$CONFIG"
+fi
+
 LOG_DIR="./logs"
 BACKUP_DIR="./backups"
-DEFAULT_DAYS=14
 
-
+# Default retention days from config if present
+DEFAULT_DAYS="${BACKUP_RETENTION_DAYS:-14}"
 DAYS="${1:-$DEFAULT_DAYS}"
 
 if ! [[ "$DAYS" =~ ^[0-9]+$ ]]; then
