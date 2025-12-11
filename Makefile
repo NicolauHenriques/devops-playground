@@ -8,7 +8,7 @@
 #	make snapshot
 
 
-.PHONY: health services net cleanup ps snapshot
+.PHONY: health services net cleanup ps snapshot backup
 
 health:
 	./full_health.sh
@@ -27,4 +27,6 @@ ps:
 
 snapshot:
 	./snapshot.sh
-	
+
+backup:
+	./backup_logs.sh 14
