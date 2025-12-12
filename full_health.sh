@@ -9,7 +9,7 @@ OUT="$OUTDIR/full_health_${TS}.txt"
 
 #Default targets
 
-SERVICES=("systemd-resolved.service" "wsl-pro.service")
+SERVICES=("systemd-resolved.service")
 NET_TARGETS=("google.com" "https://google.com")
 
 overall=0   # 0=OK, 1=WARNING, 2=CRTICAL
@@ -75,7 +75,7 @@ overall=0   # 0=OK, 1=WARNING, 2=CRTICAL
       *) echo "OVERALL: UNKNOWN (code ${overall})" ;;
     esac
 
-} > "$OUT"
+} | tee "$OUT"
 
 cat "$OUT"
 echo "Saved to: $OUT"
