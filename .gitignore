@@ -5,3 +5,7 @@ logs/
 *.swp
 *.swo
 .DS_Store
+
+ local stuff
+backups
+notes/
