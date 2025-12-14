@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+AUTO_YES=0
+if [ "${1:-}" = "--yes" ]; then
+  AUTO_YES=1
+  shift
+fi
+
 # Optional global config
 CONFIG="./config.sh"
 if [ -r "$CONFIG" ]; then
@@ -43,12 +49,15 @@ echo "The following files would be deleted:"
 printf '    %s\n' "${files[@]}"
 
 echo
-read -r -p "Delete these files? [y/N] " answer
+if [ "$AUTO_YES" -eq 1 ]; then
+  answer="y"
+else
+  read -r -p "Delete these files? [y/N] " answer
+fi
 
 case "$answer" in
   y|Y|yes|YES)
     echo "Deleting files..."
-    # Use a loop so we can show each deletion
     for f in "${files[@]}"; do
       if [ -f "$f" ]; then
         echo "  rm '$f'"
@@ -56,5 +65,8 @@ case "$answer" in
       fi
     done
     echo "Cleanup complete."
+    ;;
+  *)
+    echo "Aborted. No files deleted."
     ;;
 esac

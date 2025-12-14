@@ -4,7 +4,7 @@ Description=DevOps Playground - Full Health Check (oneshot)
 [Service]
 Type=oneshot
 WorkingDirectory=%h/devops-playground
-ExecStart=%h/devops-playground/full_health.sh
+ExecStart=%h/devops-playground/full_health.sh --quiet
 
 # Optional: keep output in journal
 StandardOutput=journal
