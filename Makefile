@@ -8,7 +8,7 @@
 #	make snapshot
 
 
-.PHONY: health services net cleanup ps snapshot backup
+.PHONY: health services net cleanup ps snapshot backup lint
 
 health:
 	./full_health.sh
@@ -30,3 +30,6 @@ snapshot:
 
 backup:
 	./backup_logs.sh
+
+lint:
+	find . -maxdepth 1 -type f -name "*.sh" -print -exec shellcheck {} \;

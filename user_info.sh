@@ -10,7 +10,7 @@ echo "Groups:      $(id -Gn)"
 # From /etc/passwd (or equivalent)
 entry="$(getent passwd "$(whoami)")" || exit 0
 
-IFS=':' read -r name passwd uid gid home shell <<< "$entry"
+IFS=':' read -r _ _ _ _ home shell <<< "$entry"
 
 echo
 echo "From passwd entry:"

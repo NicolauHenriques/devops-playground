@@ -8,7 +8,7 @@ TS="$(date +%F_%H-%M-%S)"
 OUT="$OUTDIR/net_check_${TS}.txt"
 
 if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 HOST_OR_URL [HOST_OR_URL...]" >2&
+    echo "Usage: $0 HOST_OR_URL [HOST_OR_URL...]" >&2
     exit 1
 fi
 
