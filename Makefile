@@ -32,4 +32,4 @@ backup:
 	./backup_logs.sh
 
 lint:
-	find . -maxdepth 1 -type f -name "*.sh" -print -exec shellcheck {} \;
+	@find . -maxdepth 1 -type f -name "*.sh" -exec shellcheck {} +
