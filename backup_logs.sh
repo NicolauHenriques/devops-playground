@@ -1,71 +1,76 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Optional global config
-CONFIG="./config.sh"
-if [ -r "$CONFIG" ]; then
-  # shellcheck source=/dev/null
-  . "$CONFIG"
-fi
+usage() {
+  echo "Usage: $0 [--yes] [DAYS]"
+  echo "    DAYS must be a non-negative integer (default: 14)"
+}
 
-LOG_DIR="./logs"
-BACKUP_DIR="./backups"
+YES=0
+DAYS=""
 
-# Default retention days from config if present
-DEFAULT_DAYS="${BACKUP_RETENTION_DAYS:-14}"
-DAYS="${1:-$DEFAULT_DAYS}"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --yes) YES=1; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *)
+      if [ -z "${DAYS}" ]; then
+        DAYS="$1"
+        shift
+      else
+        echo "ERROR: unexpected argument: $1" >&2
+        usage >&2
+        exit 1
+      fi
+      ;;
+  esac
+done
+
+DAYS="${DAYS:-14}"
 
 if ! [[ "$DAYS" =~ ^[0-9]+$ ]]; then
-  echo "Usage: $0 [DAYS]"
-  echo "    DAYS must be a non-negative integer (default: ${DEFAULT_DAYS})"
+  usage >&2
   exit 1
 fi
 
-if [ ! -d "$LOG_DIR" ]; then
-  echo "No '${LOG_DIR}' directory found. Nothing to back up."
-  exit 0
-fi
+LOGDIR="${LOGDIR:-./logs}"
+BACKUPDIR="${BACKUPDIR:-./backups}"
 
-mkdir -p "$BACKUP_DIR"
+mkdir -p "$LOGDIR" "$BACKUPDIR"
 
 TS="$(date +%F_%H-%M-%S)"
-ARCHIVE="${BACKUP_DIR}/logs_backup_${TS}.tar.gz"
+ARCHIVE="$BACKUPDIR/logs_backup_${TS}.tar.gz"
 
-echo "Creating backup: ${ARCHIVE}"
-# -C changes directory so the archive has relative paths, not /full/paths
-tar -czf "$ARCHIVE" -C "$LOG_DIR" .
-
+echo "Creating backup: $ARCHIVE"
+tar -czf "$ARCHIVE" -C "$LOGDIR" .
 echo "Backup created."
 
-# Cleanup old backups
-echo "Looking for backups archives older than ${DAYS} day(s) in '${BACKUP_DIR}'..."
+echo "Looking for backup archives older than ${DAYS} day(s) in '$BACKUPDIR'..."
+mapfile -t old < <(find "$BACKUPDIR" -maxdepth 1 -type f -name "logs_backup_*.tar.gz" -mtime +"$DAYS" -print | sort || true)
 
-mapfile -t old_archives < <(find "$BACKUP_DIR" -type f -name 'logs_backup_*.tar.gz' -mtime +"$DAYS" -print | sort || true)
-
-if [ "${#old_archives[@]}" -eq 0 ]; then
+if [ "${#old[@]}" -eq 0 ]; then
   echo "No old backup archives to delete."
   exit 0
 fi
 
 echo
 echo "The following old backups will be deleted:"
-printf '  %s\n' "${old_archives[@]}"
-
+printf '  %s\n' "${old[@]}"
 echo
-read -r -p "Delete these old backups? [y/N] " answer
 
-case "$answer" in
-  y|Y|yes|YES)
-    echo "Deleting old backups..."
-    for f in "${old_archives[@]}"; do
-      if [ -f "$f" ]; then
-        echo "  rm  '$f'"
-        rm -f -- "$f"
-      fi
-    done
-    echo "Old backup cleanup complete."
-    ;;
-  *)
-    echo "Aborted backup cleanup. New backup kept, old backups untouched."
-    ;;
-esac
+if [ "$YES" -ne 1 ]; then
+  read -r -p "Delete these old backups? [y/N] " answer
+  case "$answer" in
+    y|Y|yes|YES) : ;;
+    *) echo "Aborted backup cleanup. New backup kept, old backups untouched."; exit 0 ;;
+  esac
+fi
+
+echo "Deleting old backups..."
+for f in "${old[@]}"; do
+  if [ -f "$f" ]; then
+    echo "  rm '$f'"
+    rm -f -- "$f"
+  fi
+done
+echo "Old backup cleanup complete."
