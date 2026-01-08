@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=./config.sh
+source "$ROOT_DIR/config.sh"
+
 OUTDIR="./logs"
 mkdir -p "$OUTDIR"
 
