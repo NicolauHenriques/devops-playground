@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Global config for devops-playground scripts.
-# Any script can "source" this file to pick up shared defaults.
+# This file is sourced by other scripts; variables are used there.
+# shellcheck disable=SC2034
 
 # --- Health check thresholds ---
 
