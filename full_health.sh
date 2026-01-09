@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
 QUIET=0
 if [ "${1:-}" = "--quiet" ]; then
   QUIET=1
@@ -12,9 +15,13 @@ mkdir -p "$OUTDIR"
 TS="$(date +%F_%H-%M-%S)"
 OUT="$OUTDIR/full_health_${TS}.txt"
 
-# Default targets
-SERVICES=("systemd-resolved.service")
-NET_TARGETS=("google.com" "https://google.com")
+# Defaults (used if env file doesn't provide them)
+SERVICES_STR_DEFAULT="systemd-resolved.service"
+NET_TARGETS_STR_DEFAULT="google.com https://google.com"
+
+# Convert space-separated strings into arrays
+read -r -a SERVICES    <<< "${SERVICES_STR:-$SERVICES_STR_DEFAULT}"
+read -r -a NET_TARGETS <<< "${NET_TARGETS_STR:-$NET_TARGETS_STR_DEFAULT}"
 
 overall=0   # 0=OK, 1=WARNING, 2=CRITICAL
 

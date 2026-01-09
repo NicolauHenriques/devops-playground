@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+LOG_DIR="${LOG_DIR:-./logs}"
+BACKUP_DIR="${BACKUP_DIR:-./backups}"
+
 usage() {
   echo "Usage: $0 [--yes] [DAYS]"
   echo "    DAYS must be a non-negative integer (default: 14)"
