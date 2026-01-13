@@ -18,7 +18,7 @@ OUT="$OUTDIR/ps_snapshot_${TS}.txt"
 
   echo "## Top 10 processes by MEM"
   ps -eo pid,comm,%cpu,%mem --sort=-%mem | head -n 11
-} > "$OUT"
+} >"$OUT"
 
 cat "$OUT"
 echo "Saved to: $OUT"

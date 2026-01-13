@@ -15,7 +15,7 @@ fi
 echo "Checking services: $*"
 echo
 
-overall=0   # 0=OK, 1=WARNING, 2=CRITICAL
+overall=0 # 0=OK, 1=WARNING, 2=CRITICAL
 
 {
   echo "== Service Check @ $(date -Is) =="
@@ -36,7 +36,6 @@ overall=0   # 0=OK, 1=WARNING, 2=CRITICAL
     if [ -z "$enabled_state" ]; then
       enabled_state="unknown"
     fi
-
 
     echo "  active:  $active_state"
     echo "  enabled: $enabled_state"
@@ -81,7 +80,7 @@ overall=0   # 0=OK, 1=WARNING, 2=CRITICAL
     2) echo "OVERALL: CRITICAL (one or more services inactive/failed/unknown)" ;;
     *) echo "OVERALL: UNKNOWN (code ${overall})" ;;
   esac
-} > "$OUT"
+} >"$OUT"
 
 cat "$OUT"
 echo "Saved to: $OUT"

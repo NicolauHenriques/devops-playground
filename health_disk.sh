@@ -16,8 +16,8 @@ mkdir -p "$OUTDIR"
 #   1) WARN / CRIT environment variables (strongest)
 #   2) HEALTH_WARN_DISK / HEALTH_CRIT_DISK from config.sh (if set)
 #   3) Hard-coded defaults 85/95
-WARN="${WARN:-${HEALTH_WARN_DISK:-85}}"   # warning threshold for disk /
-CRIT="${CRIT:-${HEALTH_CRIT_DISK:-95}}"   # critical threshold for disk /
+WARN="${WARN:-${HEALTH_WARN_DISK:-85}}" # warning threshold for disk /
+CRIT="${CRIT:-${HEALTH_CRIT_DISK:-95}}" # critical threshold for disk /
 
 TS="$(date +%F_%H-%M-%S)"
 OUT="$OUTDIR/health_disk_${TS}.txt"

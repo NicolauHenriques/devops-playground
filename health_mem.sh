@@ -37,7 +37,7 @@ check_mem() {
   if [ "$mem_free" -lt "$CRIT_MEM" ]; then
     echo "CRITICAL: free memory ${mem_free}MB (< ${CRIT_MEM}MB)"
     STATUS=2
-  elif [ "$mem_free" -lt  "$WARN_MEM" ]; then
+  elif [ "$mem_free" -lt "$WARN_MEM" ]; then
     echo "WARNING: free memory ${mem_free}MB (< ${WARN_MEM}MB)"
     if [ "$STATUS" -lt 1 ]; then
       STATUS=1
@@ -46,7 +46,6 @@ check_mem() {
     echo "OK: free memory ${mem_free}MB"
   fi
 }
-
 
 # Build the report into the file (no pipeline here, so STATUS survives)
 {
@@ -59,8 +58,7 @@ check_mem() {
     1) echo "OVERALL: WARNING" ;;
     2) echo "OVERALL: CRITICAL" ;;
   esac
-} > "$OUT"
-
+} >"$OUT"
 
 # Show the report and exit with the correct code
 cat "$OUT"
