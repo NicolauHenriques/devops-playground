@@ -1,3 +1,5 @@
+![CI](../../actions/workflows/ci.yml/badge.svg)
+
 # devops-playground
 
 A hands-on DevOps learning repo built in WSL Ubuntu (24.04).  
