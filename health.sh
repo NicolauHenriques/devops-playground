@@ -12,7 +12,7 @@ OUT="$OUTDIR/health_overall_${TS}.txt"
 
   echo "== Overall Health @ $(date -Is) =="
   echo
- } > "$OUT"
+} >"$OUT"
 
 # Run disk check
 {
@@ -21,7 +21,7 @@ OUT="$OUTDIR/health_overall_${TS}.txt"
   disk_status=$?
   echo "disk_status=${disk_status}"
   echo
-} >> "$OUT"
+} >>"$OUT"
 
 # Run memory check
 {
@@ -30,7 +30,7 @@ OUT="$OUTDIR/health_overall_${TS}.txt"
   mem_status=$?
   echo "mem_status=${mem_status}"
   echo
-} >> "$OUT"
+} >>"$OUT"
 
 # Decide overall status = worst of disk_status and mem_status
 overall=$disk_status
@@ -39,14 +39,14 @@ if [ "$mem_status" -gt "$overall" ]; then
 fi
 
 {
- echo "Summary:"
- case "$overall" in
-   0) echo "OVERALL: OK" ;;
-   1) echo "OVERALL: WARNING" ;;
-   2) echo "OVERALL: CRITICAL" ;;
-   3) echo "OVERALL: UNKNOWN (${overall})" ;;
- esac
-} >> "$OUT"
+  echo "Summary:"
+  case "$overall" in
+    0) echo "OVERALL: OK" ;;
+    1) echo "OVERALL: WARNING" ;;
+    2) echo "OVERALL: CRITICAL" ;;
+    3) echo "OVERALL: UNKNOWN (${overall})" ;;
+  esac
+} >>"$OUT"
 
 # Show the report and the exit with the overall status
 cat "$OUT"

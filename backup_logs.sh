@@ -14,8 +14,14 @@ DAYS=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --yes) YES=1; shift ;;
-    -h|--help) usage; exit 0 ;;
+    --yes)
+      YES=1
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
     *)
       if [ -z "${DAYS}" ]; then
         DAYS="$1"
@@ -64,8 +70,11 @@ echo
 if [ "$YES" -ne 1 ]; then
   read -r -p "Delete these old backups? [y/N] " answer
   case "$answer" in
-    y|Y|yes|YES) : ;;
-    *) echo "Aborted backup cleanup. New backup kept, old backups untouched."; exit 0 ;;
+    y | Y | yes | YES) : ;;
+    *)
+      echo "Aborted backup cleanup. New backup kept, old backups untouched."
+      exit 0
+      ;;
   esac
 fi
 

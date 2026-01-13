@@ -18,7 +18,7 @@ test -f "$LOGDIR/new.log"
 test ! -f "$LOGDIR/old.log"
 
 # --- backup_logs.sh behaviour (non-interactive) ---
-echo "hello" > "$LOGDIR/example.log"
+echo "hello" >"$LOGDIR/example.log"
 LOGDIR="$LOGDIR" BACKUPDIR="$BACKUPDIR" ./backup_logs.sh --yes 999
 
 ls "$BACKUPDIR"/logs_backup_*.tar.gz >/dev/null

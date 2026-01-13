@@ -20,15 +20,15 @@ SERVICES_STR_DEFAULT="systemd-resolved.service"
 NET_TARGETS_STR_DEFAULT="google.com https://google.com"
 
 # Convert space-separated strings into arrays
-read -r -a SERVICES    <<< "${SERVICES_STR:-$SERVICES_STR_DEFAULT}"
-read -r -a NET_TARGETS <<< "${NET_TARGETS_STR:-$NET_TARGETS_STR_DEFAULT}"
+read -r -a SERVICES <<<"${SERVICES_STR:-$SERVICES_STR_DEFAULT}"
+read -r -a NET_TARGETS <<<"${NET_TARGETS_STR:-$NET_TARGETS_STR_DEFAULT}"
 
-overall=0   # 0=OK, 1=WARNING, 2=CRITICAL
+overall=0 # 0=OK, 1=WARNING, 2=CRITICAL
 
 # Decide output routing BEFORE running the report block
 if [ "$QUIET" -eq 1 ]; then
   # Quiet: write report to file only
-  : > "$OUT"
+  : >"$OUT"
   exec 3>>"$OUT"
 else
   # Normal: write to terminal AND file

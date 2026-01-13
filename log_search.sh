@@ -42,7 +42,7 @@ matches_found=0
     echo "No matches found."
   fi
 
-} > "$OUT"
+} >"$OUT"
 
 cat "$OUT"
 echo "Saved to: $OUT"

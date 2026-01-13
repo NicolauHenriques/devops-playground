@@ -6,13 +6,13 @@
 
 # Disk usage thresholds for /
 # Used by: health_disk.sh
-export HEALTH_WARN_DISK=85    # warning at 85%
-export HEALTH_CRIT_DISK=95    # critical at 95%
+export HEALTH_WARN_DISK=85 # warning at 85%
+export HEALTH_CRIT_DISK=95 # critical at 95%
 
 # Memory thresholds (MB free)
 # We'll wire these in later for health_mem.sh
-export HEALTH_WARN_MEM=800    # warning if free < 800MB
-export HEALTH_CRIT_MEM=300    # critical if free < 300MB
+export HEALTH_WARN_MEM=800 # warning if free < 800MB
+export HEALTH_CRIT_MEM=300 # critical if free < 300MB
 
 # --- Log / backup settings ---
 

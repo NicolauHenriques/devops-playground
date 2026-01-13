@@ -11,6 +11,11 @@ The goal is to practise Linux, Bash, automation, and ops-style troubleshooting t
 - git
 - shellcheck (for linting)
 
+## Development
+- Lint: 'make lint'
+- Format: 'make fmt'
+- Format check: 'make fmt-check'
+
 Install shellcheck:
 ```bash
 sudo apt update

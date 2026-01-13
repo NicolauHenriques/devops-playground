@@ -12,7 +12,7 @@
 #	make smoke
 
 
-.PHONY: health services net cleanup ps snapshot backup lint test smoke smoke-ci
+.PHONY: health services net cleanup ps snapshot backup lint test smoke smoke-ci fmt fmt-check
 
 health:
 	./full_health.sh
@@ -46,3 +46,10 @@ smoke:
 
 smoke-ci:
 	./smoke.sh --ci
+
+fmt:
+	shfmt -w -i 2 -ci -bn .
+
+fmt-check:
+	shfmt -d -i 2 -ci -bn .
+
