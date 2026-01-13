@@ -6,9 +6,13 @@
 #	make cleanup
 #	make ps
 #	make snapshot
+#	make backup
+#	make lint
+#	make test
+#	make smoke
 
 
-.PHONY: health services net cleanup ps snapshot backup lint test
+.PHONY: health services net cleanup ps snapshot backup lint test smoke
 
 health:
 	./full_health.sh
@@ -36,3 +40,6 @@ lint:
 
 test:
 	./tests/smoke.sh
+
+smoke:
+	./smoke.sh
