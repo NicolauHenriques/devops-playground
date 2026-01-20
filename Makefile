@@ -53,6 +53,5 @@ fmt:
 fmt-check:
 	shfmt -d -i 2 -ci -bn .
 
-ci:
-	fmt-check lint test
+ci: fmt-check lint test
 
