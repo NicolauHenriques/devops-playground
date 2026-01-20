@@ -7,7 +7,7 @@ WorkingDirectory=%h/devops-playground
 
 EnvironmentFile=%h/.config/devops-playground/devops-playground.env
 
-ExecStart=%h/devops-playground/full_health.sh --quiet
+ExecStart=%h/devops-playground/bin/dp health --quiet
 
 # Optional: keep output in journal
 StandardOutput=journal

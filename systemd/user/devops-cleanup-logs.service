@@ -4,6 +4,6 @@ Description=DevOps Playground - Cleanup old logs
 [Service]
 Type=oneshot
 WorkingDirectory=%h/devops-playground
-ExecStart=%h/devops-playground/cleanup_logs.sh --yes 7
+ExecStart=%h/devops-playground/bin/dp cleanup --yes 7
 StandardOutput=journal
 StandardError=journal
